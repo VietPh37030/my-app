@@ -1,22 +1,47 @@
-import React from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 
-const App = () => {
+import ProtectedRoute from "./components/ProtectedRoute"
+import "./App.css"
+import { AuthProvider } from "./context/AuthContex"
+import Layout from "./components/Layout/Layout"
+import HomePage from "./pages/HomePage"
+import LoginPage from "./pages/LoginPage"
+import DashboardPage from "./pages/DashBoardPage"
+
+function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full mx-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
-          Welcome to React + Tailwind CSS!
-        </h1>
-        <p className="text-gray-600 text-center mb-6">
-          Tailwind CSS đã được cài đặt thành công trong dự án của bạn.
-        </p>
-        <div className="flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-            Get Started
-          </button>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            {/* Trang chủ */}
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              }
+            />
+            {/* Trang đăng nhập */}
+            <Route path="/login" element={<LoginPage />} />
+            {/* Trang dashboard (cần đăng nhập) */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Layout>
+                    <DashboardPage />
+                  </Layout>
+                </ProtectedRoute>
+              }
+            />
+            {/* Redirect các route không tồn tại về trang chủ */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
         </div>
-      </div>
-    </div>
+      </Router>
+    </AuthProvider>
   )
 }
 
