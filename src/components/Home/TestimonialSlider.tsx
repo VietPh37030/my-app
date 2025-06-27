@@ -61,8 +61,9 @@ const TestimonialSlider: React.FC = () => {
             className="text-center mb-12"
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ amount: 0.3 }}
+            viewport={{ amount: 0.3, margin: "-100px" }}
           >
             <h2 className="text-4xl lg:text-5xl font-bold text-white">Testimonials</h2>
           </motion.div>
@@ -72,8 +73,9 @@ const TestimonialSlider: React.FC = () => {
             style={{ maxWidth: '932px' }}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            viewport={{ amount: 0.3 }}
+            viewport={{ amount: 0.3, margin: "-50px" }}
           >
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}

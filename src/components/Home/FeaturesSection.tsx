@@ -1,8 +1,16 @@
 import type React from "react"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import { useScrollOnceAnimation } from "../../hooks/useScrollDirection"
 import FeatureCard from "./FeatureCard"
 
 const FeaturesSection: React.FC = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { amount: 0.3, margin: "-100px" })
+  const { shouldAnimate } = useScrollOnceAnimation()
+
+  const isAnimated = shouldAnimate(isInView)
+
   const features = [
     {
       title: "Search Data",
@@ -35,17 +43,16 @@ const FeaturesSection: React.FC = () => {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={isAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ amount: 0.3 }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Features</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#212353] mb-6">Features</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Some of the features and advantages that we provide for those of you who store data in this Data Warehouse.
           </p>
@@ -57,9 +64,8 @@ const FeaturesSection: React.FC = () => {
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              animate={isAnimated ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
               transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
-              viewport={{ amount: 0.3 }}
             >
               <FeatureCard
                 title={feature.title}

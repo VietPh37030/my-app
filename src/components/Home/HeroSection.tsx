@@ -5,25 +5,25 @@ import { Button } from "../UI/Button"
 const HeroSection: React.FC = () => {
 
   return (
-    <section className="bg-white py-20 overflow-hidden">
+    <section className="bg-white py-12 sm:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <motion.div
-            className="order-2 lg:order-1"
+            className="order-2 lg:order-1 text-center lg:text-left w-full lg:max-w-[520px] lg:-ml-6"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-              <span className="text-purple-900">Save your data</span>
-              <br />
-              <span className="text-purple-900">storage here.</span>
+              <span className="text-[#212353]">Save your data<br className="hidden sm:block"/>
+              <span className="sm:hidden"> </span>storage here.</span>
+
             </motion.h1>
             <motion.p
               className="text-gray-600 text-lg mb-8 leading-relaxed max-w-lg"

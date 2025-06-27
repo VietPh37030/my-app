@@ -54,7 +54,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, bgImage, 
 
         {/* Text Content - Right side */}
         <div className="text-center md:text-left">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
+          <h3 className="text-2xl  text-[#212353] mb-4">{title}</h3>
           <p className="text-gray-600 text-base leading-relaxed mb-6">{description}</p>
           <button className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium transition-colors">
             Learn more
